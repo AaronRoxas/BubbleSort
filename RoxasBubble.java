@@ -1,66 +1,52 @@
 import java.util.Scanner;
-public class RoxasBubble
+public class bubbleSort
 {
-    
-    
-    public static void main(String[] args)
+    public static void main(String[] args) 
     {
-        Scanner s = new Scanner(System.in);
+      Scanner s = new Scanner(System.in);
         System.out.print("Enter array size: ");
         int size = s.nextInt();
-        int storage[] = new int[size];
+        int array[] = new int [size];
         
-        for(int i =0;i<size;i++)
+        System.out.println("Enter values to put in array:");
+        for(int i = 0; i < size;i++)
         {
-            System.out.print("Enter value in array ["+i+"]: ");
-            storage[i] = s.nextInt();
+            array[i] = s.nextInt();
         }
- 
-        bubbleSort(storage,size);
+        sort(array);
     }
     
-static void bubbleSort(int arr[], int n)
-{
-    int i, j, temp, flag=0;
-    for(i = 0; i < n; i++)
+    static void sort(int array[])
     {
-        for(j = 0; j < n-i-1; j++)
+        int size = array.length;
+        int temp;
+        String display = "";
+        String unsorted = "";
+        //loop to display unsorted array
+        for(int i = 0; i<size;i++)
         {
-            // introducing a flag to monitor swapping
-            if( arr[j] > arr[j+1])
+            unsorted += array[i]+" ";
+        }
+        
+        //Loop to sort array
+        for(int i = 0; i <size-1;i++)
+        {
+            for(int j = 0; j<size-1;j++)
             {
-                // swap the elements
-                temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
-                // if swapping happens update flag to 1
-                flag = 1;
-            } 
+                if(array[j] > array[j+1])
+                {
+                    temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = temp;          
+                }
+            }
         }
-        // if value of flag is zero after all the iterations of inner loop
-        // then break out
-        if(flag==0)
+        //Loop to display sorted array
+        for(int i = 0; i<size;i++)
         {
-            break;
+            display += array[i]+" ";
         }
+        System.out.println("Unsorted Array: " + unsorted
+                +"\nSorted Array: " + display);
     }
-    
-    // print the sorted array
-    System.out.println("Sorted Array: ");
-    for(i = 0; i < n; i++)
-    {
-        System.out.print(arr[i]+" ");
-    }
-}
-    
-    static void print (int a[]) //function to print array elements  
-    {  
-        int n = a.length;  
-        int i;  
-        for (i = 0; i < n; i++)  
-        {  
-            System.out.print(a[i] + " ");  
-        }   
-    }
-    
 }
